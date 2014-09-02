@@ -70,7 +70,6 @@ define([
         return;
       }
 
-      /* jshint trailing:false, quotmark:false, newcap:false */
       this.setState({
         activeApp: app,
         modalClass: AppModalComponent
@@ -82,7 +81,6 @@ define([
         return;
       }
 
-      /* jshint trailing:false, quotmark:false, newcap:false */
       this.setState({
         modalClass: NewAppModalComponent
       });

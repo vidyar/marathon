@@ -25,7 +25,6 @@ define([
   var VALID_EXECUTOR_REGEX = new RegExp(VALID_EXECUTOR_PATTERN);
 
   var VALID_ID_PATTERN = "^/?(([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])\\.)*([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9]/?)+$";
-  var UPDATEABLE_ATTRIBUTES = ["instances", "tasksRunning", "tasksStaged", "deployments"];
   var VALID_ID_REGEX = new RegExp(VALID_ID_PATTERN);
   var VALID_CONSTRAINTS = ["unique", "cluster", "group_by"];
 
@@ -148,20 +147,6 @@ define([
       }
 
       return data;
-    },
-
-    /* Updates only those attributes listed in `UPDATEABLE_ATTRIBUTES` to prevent
-     * showing values that cannot be changed.
-     */
-    update: function(attrs) {
-
-      var filteredAttributes = _.filter(UPDATEABLE_ATTRIBUTES, function(attr) {
-        return attrs[attr] != null;
-      });
-
-      var allowedAttrs = _.pick(attrs, filteredAttributes);
-
-      this.set(allowedAttrs);
     },
 
     /* Sends only those attributes listed in `EDITABLE_ATTRIBUTES` to prevent

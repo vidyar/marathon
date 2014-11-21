@@ -1,10 +1,12 @@
 language: scala
+
 before_script:
   - export PROJECT_VERSION="`sed -n 's|version := "\(.*\)"|\1|p' version.sbt | awk '{ print $1; exit }'`" && echo Project version is $PROJECT_VERSION
   - export ARTIFACT="marathon-$PROJECT_VERSION.tgz"
   - pushd src/main/resources/assets/ && npm install && ./bin/build && popd
 jdk:
   - openjdk6
+
 scala:
   - 2.10.2
 env:
@@ -30,3 +32,4 @@ after_success:
   - shasum --binary --algorithm 256 "$ARTIFACT" > "$ARTIFACT".sha256
   - travis-artifacts upload --path "$ARTIFACT" --target-path marathon/"$TRAVIS_BRANCH"/
   - travis-artifacts upload --path "$ARTIFACT".sha256 --target-path marathon/"$TRAVIS_BRANCH"/
+archive: true

@@ -1,5 +1,6 @@
 language: scala
 build_image: shippable/minv2
+
 before_script:
   - export PROJECT_VERSION="`sed -n 's|version := "\(.*\)"|\1|p' version.sbt | awk '{ print $1; exit }'`" && echo Project version is $PROJECT_VERSION
   - export ARTIFACT="marathon-$PROJECT_VERSION.tgz"
